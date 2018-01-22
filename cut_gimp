@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Shell script for calling cut_gimp.py sanely
+# Takes two args, input and output
+
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+
+export PY_CUT_INPUT="$1"
+export PY_CUT_OUTPUT="$2"
+export PY_CUT_X="$3"
+export PY_CUT_Y="$4"
+export PY_CUT_FEATHER_RADIUS="$5"
+
+gimp -n -i --batch-interpreter=python-fu-eval -b - < $dir/cut_gimp.py
